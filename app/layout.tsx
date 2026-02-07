@@ -1,7 +1,11 @@
 // <== IMPORTS ==>
 import "./globals.css";
 import type { Metadata } from "next";
+import Navbar from "@/components/common/Navbar";
+import Sidebar from "@/components/common/Sidebar";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ThemeProvider } from "@/context/ThemeProvider";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 // <== SANS FONT CONFIGURATION ==>
 const geistSans = Geist({
@@ -31,11 +35,31 @@ export default function RootLayout({
 }>) {
   // RETURNING THE ROOT LAYOUT STRUCTURE
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex`}
       >
-        {children}
+        {/* THEME PROVIDER */}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {/* SIDEBAR PROVIDER */}
+          <SidebarProvider>
+            {/* SIDEBAR */}
+            <Sidebar />
+            {/* MAIN CONTENT */}
+            <main className="w-full">
+              {/* NAVBAR */}
+              <Navbar />
+              {/* CHILDREN CONTENT */}
+              <div className="px-4">{children}</div>
+            </main>
+          </SidebarProvider>
+          {/* SIDEBAR */}
+        </ThemeProvider>
       </body>
     </html>
   );
