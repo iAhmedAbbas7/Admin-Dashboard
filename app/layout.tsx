@@ -1,6 +1,7 @@
 // <== IMPORTS ==>
 import "./globals.css";
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import Navbar from "@/components/common/Navbar";
 import Sidebar from "@/components/common/Sidebar";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -28,11 +29,15 @@ export const metadata: Metadata = {
 };
 
 // <== ROOT LAYOUT COMPONENT ==>
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // GETTING THE SIDEBAR STATE
+  const cookieStore = await cookies();
+  // DEFAULT OPEN STATE
+  const defaultOpen = cookieStore.get("sidebar_state")?.value === "true";
   // RETURNING THE ROOT LAYOUT STRUCTURE
   return (
     <html lang="en" suppressHydrationWarning>
@@ -47,7 +52,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {/* SIDEBAR PROVIDER */}
-          <SidebarProvider>
+          <SidebarProvider defaultOpen={defaultOpen}>
             {/* SIDEBAR */}
             <Sidebar />
             {/* MAIN CONTENT */}
