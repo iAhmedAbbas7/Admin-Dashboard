@@ -1,10 +1,8 @@
 /* <== TAILWIND CSS IMPORTS */
 @import "tailwindcss";
 @import "tw-animate-css";
-
 /* <== CUSTOM VARIANT ==> */
 @custom-variant dark (&:is(.dark *));
-
 /* <== SHADCN THEME VARIABLES ==> */
 @theme inline {
   --color-background: var(--background);
@@ -48,7 +46,6 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
 }
-
 /* <== SHADCN ROOT VARIABLES ==> */
 :root {
   --radius: 0.625rem;
@@ -84,7 +81,6 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 }
-
 /* <== SHADCN DARK VARIABLES */
 .dark {
   --background: oklch(0.145 0 0);
@@ -119,7 +115,6 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
-
 /* <== SHADCN BASE STYLES ==> */
 @layer base {
   * {
@@ -128,4 +123,52 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+/* <== WEBKIT SCROLLBAR ==> */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+/* <== WEBKIT SCROLLBAR TRACK ==> */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+/* <== WEBKIT SCROLLBAR THUMB ==> */
+::-webkit-scrollbar-thumb {
+  background: oklch(0.3 0.03 260);
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+/* <== WEBKIT SCROLLBAR THUMB HOVER ==> */
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.4 0.03 260);
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+/* <== WEBKIT SCROLLBAR CORNER ==> */
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+/* <== WEBKIT SCROLLBAR FOR LIGHT MODE ==> */
+:root:not(.dark) ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+/* <== WEBKIT SCROLLBAR TRACK FOR LIGHT MODE ==> */
+:root:not(.dark) ::-webkit-scrollbar-track {
+  background: oklch(0 0 0 / 4%);
+}
+/* <== WEBKIT SCROLLBAR THUMB FOR LIGHT MODE ==> */
+:root:not(.dark) ::-webkit-scrollbar-thumb {
+  background: oklch(0.78 0.03 260 / 35%);
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+/* <== WEBKIT SCROLLBAR THUMB HOVER FOR LIGHT MODE ==> */
+:root:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.65 0.04 260 / 60%);
+  border: 2px solid transparent;
+  background-clip: content-box;
 }
