@@ -25,7 +25,7 @@ const Navbar = (): JSX.Element => {
   // RETURNING THE NAVBAR CONTENT
   return (
     // MAIN CONTAINER
-    <nav className="flex items-center justify-between p-4">
+    <nav className="flex items-center justify-between p-4 sticky top-0 z-50 left-0 right-0 bg-white mb-4 dark:bg-slate-900">
       {/* LEFT SECTION */}
       <SidebarTrigger className="cursor-pointer" />
       {/* RIGHT SECTION */}
