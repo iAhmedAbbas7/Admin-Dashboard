@@ -14,6 +14,7 @@ import {
 import { JSX } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
+import { SidebarTrigger } from "../ui/sidebar";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Home, Laptop2, LogOut, Moon, Settings, Sun, User } from "lucide-react";
 
@@ -26,7 +27,7 @@ const Navbar = (): JSX.Element => {
     // MAIN CONTAINER
     <nav className="flex items-center justify-between p-4">
       {/* LEFT SECTION */}
-      <div>Left Section</div>
+      <SidebarTrigger className="cursor-pointer" />
       {/* RIGHT SECTION */}
       <div className="flex items-center gap-4">
         {/* HOME LINK */}
