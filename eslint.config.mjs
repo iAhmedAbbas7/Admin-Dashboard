@@ -9,6 +9,12 @@ const eslintConfig = defineConfig([
   ...nextTs,
   // GLOBAL IGNORES
   globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts"]),
+  // CUSTOM RULES
+  {
+    rules: {
+      "react-hooks/incompatible-library": "off",
+    },
+  },
 ]);
 
 // <== EXPORTING ESLINT CONFIGURATION ==>
