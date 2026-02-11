@@ -268,7 +268,7 @@ const PaymentsPage = async () => {
   // RETURNING THE PAYMENTS PAGE CONTENT
   return (
     // MAIN CONTAINER
-    <div>
+    <div className="mb-8">
       {/* PAGE HEADER */}
       <div className="flex items-center gap-2 mb-8 px-4 py-2 bg-secondary rounded-md">
         <LucideCircleDollarSign />{" "}
