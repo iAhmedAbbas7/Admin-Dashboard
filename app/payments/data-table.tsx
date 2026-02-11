@@ -3,12 +3,6 @@
 
 // <== IMPORTS ==>
 import {
-  ColumnDef,
-  flexRender,
-  getCoreRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
-import {
   Table,
   TableBody,
   TableCell,
@@ -16,6 +10,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  ColumnDef,
+  flexRender,
+  useReactTable,
+  getCoreRowModel,
+  getPaginationRowModel,
+  SortingState,
+  getSortedRowModel,
+} from "@tanstack/react-table";
+import { useState } from "react";
+import { DataTablePagination } from "@/components/table/TablePagination";
 
 // <== DATA TABLE PROPS ==>
 interface DataTableProps<TData, TValue> {
@@ -30,11 +35,23 @@ export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
+  // TABLE SORTING STATE
+  const [sorting, setSorting] = useState<SortingState>([]);
+  // TABLE ROW SELECTION STATE
+  const [rowSelection, setRowSelection] = useState({});
   // INITIALIZING THE TABLE
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    onSortingChange: setSorting,
+    getSortedRowModel: getSortedRowModel(),
+    onRowSelectionChange: setRowSelection,
+    state: {
+      sorting,
+      rowSelection,
+    },
   });
   // RETURNING THE DATA TABLE CONTENT
   return (
@@ -81,6 +98,8 @@ export function DataTable<TData, TValue>({
           )}
         </TableBody>
       </Table>
+      {/* TABLE PAGINATION */}
+      <DataTablePagination table={table} />
     </div>
   );
 }
