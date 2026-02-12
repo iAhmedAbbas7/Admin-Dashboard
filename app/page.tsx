@@ -34,7 +34,7 @@ const HomePage = (): JSX.Element => {
       </div>
       {/* CARD LIST */}
       <div className="bg-primary-foreground p-4 rounded-lg">
-        <CardList title="Popular Content" />
+        <CardList title="Popular Products" />
       </div>
     </div>
   );
