@@ -15,22 +15,22 @@ import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
 // <== CHART DATA ==>
 const CHART_DATA = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { month: "January", total: 186, successful: 80 },
+  { month: "February", total: 305, successful: 200 },
+  { month: "March", total: 237, successful: 120 },
+  { month: "April", total: 273, successful: 150 },
+  { month: "May", total: 209, successful: 130 },
+  { month: "June", total: 214, successful: 140 },
 ];
 
 // <== CHART CONFIG ==>
 const CHART_CONFIG = {
-  desktop: {
-    label: "Desktop",
+  total: {
+    label: "Total",
     color: "var(--chart-1)",
   },
-  mobile: {
-    label: "Mobile",
+  successful: {
+    label: "Successful",
     color: "var(--chart-2)",
   },
 } satisfies ChartConfig;
@@ -43,7 +43,7 @@ const AppBarChart = () => {
     <div>
       {/* TITLE */}
       <h1 className="flex items-center gap-1 text-lg mb-6 font-semibold">
-        <DollarSign /> <span>Total Revenue</span>
+        <DollarSign /> <span>Total Transactions</span>
       </h1>
       {/* CHART */}
       <ChartContainer config={CHART_CONFIG} className="min-h-50 w-full">
@@ -59,8 +59,8 @@ const AppBarChart = () => {
           <YAxis tickLine={false} tickMargin={10} axisLine={false} />
           <ChartLegend content={<ChartLegendContent />} />
           <ChartTooltip content={<ChartTooltipContent />} />
-          <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-          <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+          <Bar dataKey="total" fill="var(--color-total)" radius={4} />
+          <Bar dataKey="successful" fill="var(--color-successful)" radius={4} />
         </BarChart>
       </ChartContainer>
     </div>
