@@ -21,6 +21,7 @@ import {
 } from "@tanstack/react-table";
 import { useState } from "react";
 import { DataTablePagination } from "@/src/components/table/TablePagination";
+import { Trash2 } from "lucide-react";
 
 // <== DATA TABLE PROPS ==>
 interface DataTableProps<TData, TValue> {
@@ -55,8 +56,17 @@ export function DataTable<TData, TValue>({
   });
   // RETURNING THE DATA TABLE CONTENT
   return (
-    <div className="overflow-hidden rounded-md border">
-      <Table>
+    <div className="overflow-hidden rounded-md border p-2">
+      {/* TABLE ACTIONS */}
+      {Object.keys(rowSelection).length > 0 && (
+        <div className="w-full flex justify-end">
+          <button className="flex items-center text-white bg-red-500 px-2 py-1 text-sm rounded-md cursor-pointer">
+            <Trash2 />
+            <span className="ml-2">Delete</span>
+          </button>
+        </div>
+      )}
+      <Table className="my-2">
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
@@ -99,7 +109,9 @@ export function DataTable<TData, TValue>({
         </TableBody>
       </Table>
       {/* TABLE PAGINATION */}
-      <DataTablePagination table={table} />
+      <div className="p-2">
+        <DataTablePagination table={table} />
+      </div>
     </div>
   );
 }
