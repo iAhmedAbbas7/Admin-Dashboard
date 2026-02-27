@@ -10,6 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu";
+import Link from "next/link";
 import { Button } from "@/src/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "@/src/components/ui/checkbox";
@@ -21,8 +22,10 @@ export type Payment = {
   id: string;
   // <== AMOUNT ==>
   amount: number;
-  // <== USERNAME ==>
-  username: string;
+  // <== FULLNAME ==>
+  fullName: string;
+  // <== USER ID ==>
+  userId: string;
   // <== EMAIL ==>
   email: string;
   // <== STATUS ==>
@@ -78,7 +81,7 @@ export const columns: ColumnDef<Payment>[] = [
     },
   },
   {
-    accessorKey: "username",
+    accessorKey: "fullName",
     header: "User",
   },
   {
@@ -130,7 +133,9 @@ export const columns: ColumnDef<Payment>[] = [
               Copy payment ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href={`/users/${payment.userId}`}>View customer</Link>
+            </DropdownMenuItem>
             <DropdownMenuItem>View payment details</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
