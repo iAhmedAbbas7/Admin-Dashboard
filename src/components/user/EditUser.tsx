@@ -17,13 +17,6 @@ import {
   SheetHeader,
   SheetTitle,
 } from "../ui/sheet";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/src/components/ui/select";
 import { z } from "zod";
 import { JSX } from "react";
 import { Input } from "../ui/input";
@@ -36,7 +29,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 // <== FORM SCHEMA ==>
 const formSchema = z.object({
   // <== USERNAME ==>
-  username: z.string().min(2, "Username must be at least 2 Characters Long"),
+  fullName: z.string().min(2, "FullName must be at least 2 Characters Long"),
   // <== EMAIL ==>
   email: z.email("Invalid Email Address"),
   // <== PHONE ==>
@@ -45,10 +38,10 @@ const formSchema = z.object({
     .min(10, "Phone number must be between 7 and 12 digits")
     .max(15, "Phone number must be between 7 and 12 digits")
     .regex(/^[0-9]+$/, "Phone number must contain only digits"),
-  // <== LOCATION ==>
-  location: z.string().min(1, "Location is Required"),
-  // <== ROLE ==>
-  role: z.enum(["Admin", "User"], "Role is Required"),
+  // <== ADDRESS ==>
+  address: z.string().min(1, "Address is Required"),
+  // <== CITY ==>
+  city: z.string().min(1, "City is Required"),
 });
 
 // <== EDIT USER COMPONENT ==>
@@ -56,11 +49,11 @@ const EditUser = (): JSX.Element => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "iAhmedAbbas7",
+      fullName: "Ahmed Abbas",
       email: "iahmedabbas7@gamil.com",
       phone: "0311-6474871",
-      location: "Okara, Punjab, Pakistan",
-      role: "Admin",
+      address: "123 Main Street",
+      city: "Okara, Punjab",
     },
   });
   // RETURNING THE EDIT USER CONTENT
@@ -82,14 +75,14 @@ const EditUser = (): JSX.Element => {
                 {/* USERNAME */}
                 <FormField
                   control={form.control}
-                  name="username"
+                  name="fullName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel htmlFor={field.name}>Username</FormLabel>
+                      <FormLabel htmlFor={field.name}>FullName</FormLabel>
                       <FormControl>
                         <Input {...field} />
                       </FormControl>
-                      <FormDescription>Your Profile Username</FormDescription>
+                      <FormDescription>Your Profile FullName</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -128,43 +121,35 @@ const EditUser = (): JSX.Element => {
                     </FormItem>
                   )}
                 />
-                {/* LOCATION */}
+                {/* ADDRESS */}
                 <FormField
                   control={form.control}
-                  name="location"
+                  name="address"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel htmlFor={field.name}>Location</FormLabel>
+                      <FormLabel htmlFor={field.name}>Address</FormLabel>
                       <FormControl>
                         <Input {...field} />
                       </FormControl>
                       <FormDescription>
-                        This is your Location Visible to the Public
+                        This is your Address Visible to the Public
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                {/* ROLE */}
+                {/* CITY */}
                 <FormField
                   control={form.control}
-                  name="role"
+                  name="city"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel htmlFor={field.name}>Role</FormLabel>
+                      <FormLabel htmlFor={field.name}>City</FormLabel>
                       <FormControl>
-                        <Select>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Role" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="Admin">Admin</SelectItem>
-                            <SelectItem value="User">User</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <Input {...field} />
                       </FormControl>
                       <FormDescription>
-                        Only Verified Users can be Admin
+                        Your city will be visible to the public
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
